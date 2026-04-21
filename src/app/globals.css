@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-blue-royal: #1A3BCC;
+  --color-blue-bright: #3B82F6;
+  --color-blue-sky: #60A5FA;
+  --color-blue-wash: #101E4D;
+  --color-blue-whisper: #080D21;
+
+  --color-text-headline: #0F172A;
+  --color-text-body: #475569;
+  --color-text-caption: #94A3B8;
+  --color-text-on-blue: #FFFFFF;
+
+  --color-bg-page: #FAFAFA;
+  --color-bg-canvas: #FFFFFF;
+  --color-bg-mist: #F1F5F9;
+  --color-bg-fog: #E2E8F0;
+
+  --color-amber: #F59E0B;
+  --color-amber-wash: #2D1A05;
+  --color-emerald: #10B981;
+  --color-emerald-wash: #052D21;
+  --color-violet: #8B5CF6;
+  --color-violet-wash: #2D0F4D;
+
+  --color-border-subtle: #1A1A24;
+  --color-border-medium: #2D2D3B;
+  --color-border-strong: #4A4A5E;
+
+  --font-display: var(--font-oswald), sans-serif;
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), monospace;
+  --font-serif: Georgia, 'Times New Roman', Times, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg-blueprint: #FAFAFA;
+    --blueprint-line: rgba(15, 23, 42, 0.05);
+    --blueprint-line-bold: rgba(15, 23, 42, 0.08);
+
+    --gradient-hero: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+    --gradient-cta: linear-gradient(135deg, #2563EB 0%, #60A5FA 100%);
+    --gradient-terminal: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    
+    --shadow-terminal: 0 4px 20px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    background-color: #FAFAFA !important;
+    @apply text-slate-600 font-sans antialiased selection:bg-blue-100 selection:text-blue-900;
+    background-image: 
+      linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px),
+      linear-gradient(var(--blueprint-line-bold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blueprint-line-bold) 1px, transparent 1px);
+    background-size: 60px 60px, 60px 60px, 300px 300px, 300px 300px;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 font-display;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .terminal-card {
+    @apply bg-white/[0.01] border border-white/5 relative overflow-hidden;
+    background-image: var(--gradient-terminal);
+  }
+
+  .terminal-card::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+
+  .text-monodata {
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(245, 158, 11, 0.10);
+  }
+
+  .text-gradient {
+    @apply text-transparent bg-clip-text;
+    background-image: var(--gradient-cta);
+  }
 }
+
+.text-fluid-h1 { font-size: clamp(3rem, 10vw, 9rem); }
+.text-fluid-h2 { font-size: clamp(2.5rem, 8vw, 7rem); }
+.text-mono-telemetry { font-family: var(--font-mono); letter-spacing: 0.4em; text-transform: uppercase; font-size: 0.6rem; }
+.mask-curve-bottom { mask-image: radial-gradient(150% 100% at 50% 100%, black 75%, transparent 100%); }
+.mask-curve-top { mask-image: radial-gradient(150% 100% at 50% 0%, black 75%, transparent 100%); }
+@keyframes scan-y { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+.animate-scan-y { animation: scan-y 8s linear infinite; }
+
