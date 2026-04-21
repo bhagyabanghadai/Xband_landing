@@ -1,28 +1,16 @@
 import type { Metadata } from "next";
-import { Oswald, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Oswald, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import React from "react";
-import SmoothScrolling from "@/components/SmoothScrolling";
+import { ReactLenis } from 'lenis/react'
 
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const ibmPlexMono = IBM_Plex_Mono({ weight: ['400', '600'], subsets: ["latin"], variable: "--font-ibm-plex-mono" });
 
 export const metadata: Metadata = {
-  title: "XBandGlobal | Global Incorporation Marketplace",
-  description: "Form & operate globally. Trusted businesses, verified setup across regions.",
+  title: "XBandGlobal | Verified Incorporation Setup",
+  description: "XBandGlobal is a specialized B2B marketplace connecting businesses seeking international company incorporation services with vetted, verified service providers across multiple jurisdictions.",
 };
 
 export default function RootLayout({
@@ -31,12 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${oswald.variable} ${manrope.variable} ${ibmPlexMono.variable} h-full antialiased bg-slate-50`}
-    >
-      <body className="min-h-full flex flex-col bg-slate-50">
-        <SmoothScrolling>{children}</SmoothScrolling>
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${oswald.variable} ${manrope.variable} ${ibmPlexMono.variable} antialiased`}
+      >
+        <ReactLenis root>
+          {children}
+        </ReactLenis>
       </body>
     </html>
   );

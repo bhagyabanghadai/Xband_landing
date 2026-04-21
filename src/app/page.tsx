@@ -1,39 +1,19 @@
 import Navbar from "@/components/Navbar";
-import LandingHero from "@/components/LandingHero";
-import NotchSeparator from "@/components/NotchSeparator";
-import OperationalProtocol from "@/components/OperationalProtocol";
-import GallerySection from "@/components/GallerySection";
-import JurisdictionsCarousel from "@/components/JurisdictionsCarousel";
-import HowItWorksSection from "@/components/HowItWorksSection";
-import FinalCTA from "@/components/FinalCTA";
-import clsx from "clsx";
+import Hero from "@/components/Hero";
+import StickyFeatures from "@/components/StickyFeatures";
+import Ticker from "@/components/Ticker";
+import HowItWorks from "@/components/HowItWorks";
+import FooterCTA from "@/components/FooterCTA";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-slate-50 overflow-hidden">
+    <main className="min-h-screen bg-[#FAFAFA]">
       <Navbar />
-      
-      <LandingHero />
-      
-      <NotchSeparator fillColorClass="fill-white" />
-      
-      <OperationalProtocol />
-
-      <NotchSeparator fillColorClass="fill-slate-50" />
-
-      <GallerySection />
-
-      <NotchSeparator fillColorClass="fill-white" />
-
-      <JurisdictionsCarousel />
-
-      <NotchSeparator fillColorClass="fill-slate-50" />
-
-      <HowItWorksSection />
-
-      <NotchSeparator fillColorClass="fill-slate-50" />
-
-      <FinalCTA />
+      <Hero />
+      <Ticker />
+      <StickyFeatures />
+      <HowItWorks />
+      <FooterCTA />
     </main>
   );
 }
