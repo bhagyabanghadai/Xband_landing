@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Oswald, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactLenis } from 'lenis/react'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
-const ibmPlexMono = IBM_Plex_Mono({ weight: ['400', '600'], subsets: ["latin"], variable: "--font-ibm-plex-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: 'swap' });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: 'swap' });
+const ibmPlexMono = IBM_Plex_Mono({ weight: ['400', '600'], subsets: ["latin"], variable: "--font-ibm-plex-mono", display: 'swap' });
 
 export const metadata: Metadata = {
   title: "XBandGlobal | Verified Incorporation Setup",
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${oswald.variable} ${manrope.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${inter.variable} ${manrope.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <ReactLenis root>
           {children}

@@ -7,7 +7,7 @@ import FooterCTA from "@/components/FooterCTA";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FAFAFA]">
+    <main className="bg-white min-h-screen">
       <Navbar />
       <Hero />
       <Ticker />
