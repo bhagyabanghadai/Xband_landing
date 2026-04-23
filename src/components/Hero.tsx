@@ -15,16 +15,16 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100svh] w-full overflow-hidden flex flex-col justify-center bg-black">
+    <section ref={containerRef} className="relative min-h-[100svh] w-full overflow-hidden flex flex-col justify-center bg-[#FAFAFA]">
       {/* Background and Scene Wrapper */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 opacity-80 mix-blend-multiply pointer-events-auto">
          <NetworkScene />
       </div>
 
       {/* Hero Typography Content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 w-full flex flex-col items-center justify-center pt-32 px-4"
+        className="relative z-10 w-full flex flex-col items-center justify-center pt-32 px-4 pointer-events-none"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -32,7 +32,7 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-[1400px] mx-auto flex flex-col items-center"
         >
-          <h1 className="text-center font-display text-white font-medium leading-[0.95] tracking-[-0.05em] text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[11rem]">
+          <h1 className="text-center font-display text-[#0A1629] font-medium leading-[0.95] tracking-[-0.05em] text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[11rem] mix-blend-color-burn">
             Imagine the world<br />
             as an intelligent bridge<br />
             seamlessly connecting<br />
