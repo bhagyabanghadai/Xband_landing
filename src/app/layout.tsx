@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactLenis } from 'lenis/react'
+import CustomCursor from "@/components/CustomCursor";
+import Preloader from "@/components/Preloader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: 'swap' });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: 'swap' });
@@ -22,6 +24,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${manrope.variable} ${ibmPlexMono.variable} antialiased`}
       >
+        <Preloader />
+        <CustomCursor />
         <ReactLenis root>
           {children}
         </ReactLenis>

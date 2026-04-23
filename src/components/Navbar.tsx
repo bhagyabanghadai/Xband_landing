@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Menu, X, ChevronDown, Phone, ArrowRight, Sparkles } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -68,14 +69,18 @@ export default function Navbar() {
               </div>
 
               {/* Phone Button */}
-              <button className="flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
-                <Phone size={16} />
-              </button>
+              <MagneticButton strength={40}>
+                <button className="flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
+                  <Phone size={16} />
+                </button>
+              </MagneticButton>
 
               {/* Vibrant CTA */}
-              <button className="px-5 h-10 bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold tracking-wider rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                CONTACT
-              </button>
+              <MagneticButton strength={20}>
+                <button className="px-5 h-10 bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold tracking-wider rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-xl">
+                  CONTACT
+                </button>
+              </MagneticButton>
             </div>
 
             {/* Mobile Toggle */}

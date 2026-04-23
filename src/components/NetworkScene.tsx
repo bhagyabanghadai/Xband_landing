@@ -1,9 +1,63 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, MeshTransmissionMaterial, Float, Bounds } from "@react-three/drei";
+import { Environment, MeshTransmissionMaterial, Float, Bounds, Line, Sphere } from "@react-three/drei";
 import * as THREE from "three";
+
+// Logistics Nodes Orbiting the Core
+function OrbitingNodes() {
+  const groupRef = useRef<THREE.Group>(null);
+
+  // Create static positions for nodes
+  const nodes = useMemo(() => {
+    return Array.from({ length: 8 }).map(() => ({
+      position: [
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 4,
+        (Math.random() - 0.5) * 5
+      ] as [number, number, number],
+      color: Math.random() > 0.5 ? "#3B82F6" : "#10B981"
+    }));
+  }, []);
+
+  useFrame(() => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y -= 0.002;
+      groupRef.current.rotation.x += 0.001;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      {nodes.map((node, i) => (
+        <group key={i}>
+          <Sphere args={[0.08, 16, 16]} position={node.position}>
+            <meshBasicMaterial color={node.color} />
+          </Sphere>
+          {/* Draw a line connecting some nodes to the center */}
+          <Line
+            points={[[0,0,0], node.position]}
+            color={node.color}
+            opacity={0.2}
+            transparent
+            lineWidth={1}
+          />
+        </group>
+      ))}
+
+      {/* Outer Orbit Ring representing global paths */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[4, 4.02, 64]} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.1} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh rotation={[Math.PI / 3, Math.PI / 4, 0]}>
+        <ringGeometry args={[5, 5.02, 64]} />
+        <meshBasicMaterial color="#3B82F6" transparent opacity={0.1} side={THREE.DoubleSide} />
+      </mesh>
+    </group>
+  );
+}
 
 function MassiveGlassStructure() {
   const groupRef = useRef<THREE.Group>(null);
@@ -27,6 +81,7 @@ function MassiveGlassStructure() {
 
   return (
     <group ref={groupRef}>
+      <OrbitingNodes />
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={1}>
         <mesh ref={meshRef} position={[0, -0.5, 0]} scale={[6, 2, 3]}>
           <torusKnotGeometry args={[1, 0.3, 256, 32]} />
