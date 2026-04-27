@@ -28,20 +28,20 @@ export default function Navbar() {
       >
         <div className="container mx-auto max-w-7xl flex justify-center">
           <div className={clsx(
-            "flex items-center justify-between w-full rounded-[20px] transition-all duration-500 overflow-hidden",
-            "bg-white/80 backdrop-blur-xl border border-slate-200 shadow-premium",
+            "flex items-center justify-between w-full rounded-[24px] transition-all duration-500 overflow-hidden",
+            "premium-glass", // Using the new elite glassmorphism class
             "px-4 py-3 md:px-5 md:py-3.5"
           )}>
             {/* Logo */}
-            <div className="flex items-center gap-2 z-50 shrink-0 mr-8">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <div className="flex items-center gap-2 z-50 shrink-0 mr-8 relative">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                 <span className="text-white font-bold font-display text-xl leading-none tracking-tighter">X</span>
               </div>
               <span className="font-display font-bold text-xl text-slate-900 tracking-tight">XBandGlobal</span>
             </div>
 
             {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-6 mr-auto">
+            <div className="hidden lg:flex items-center gap-8 mr-auto">
               <a href="#" className="flex items-center gap-1.5 text-[13px] font-semibold text-slate-600 hover:text-slate-900 transition-colors">
                 System <ChevronDown size={14} className="text-slate-400" />
               </a>
@@ -60,9 +60,9 @@ export default function Navbar() {
             </div>
 
             {/* Right Actions */}
-            <div className="hidden md:flex items-center gap-3 shrink-0">
+            <div className="hidden md:flex items-center gap-3 shrink-0 relative">
               {/* Ask Input */}
-              <div className="hidden xl:flex items-center bg-slate-50/80 rounded-lg border border-slate-200 px-3 py-1.5 h-10 w-64 group hover:border-slate-300 hover:bg-white transition-colors cursor-text shadow-inner">
+              <div className="hidden xl:flex items-center bg-white/50 backdrop-blur-md rounded-xl border border-black/5 px-3 py-1.5 h-10 w-64 group hover:border-black/10 hover:bg-white transition-colors cursor-text shadow-inner">
                 <Sparkles size={14} className="text-blue-500 mr-2" />
                 <span className="text-[13px] text-slate-400 font-mono flex-1">Ask XBand</span>
                 <ArrowRight size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
@@ -70,14 +70,14 @@ export default function Navbar() {
 
               {/* Phone Button */}
               <MagneticButton strength={40}>
-                <button className="flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
+                <button className="flex items-center justify-center w-10 h-10 rounded-xl border border-black/5 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
                   <Phone size={16} />
                 </button>
               </MagneticButton>
 
               {/* Vibrant CTA */}
               <MagneticButton strength={20}>
-                <button className="px-5 h-10 bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold tracking-wider rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-xl">
+                <button className="px-6 h-10 bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold tracking-widest rounded-xl transition-all flex items-center justify-center shadow-lg hover:shadow-xl">
                   CONTACT
                 </button>
               </MagneticButton>
@@ -112,7 +112,7 @@ export default function Navbar() {
               <a href="#" className="border-b border-slate-100 pb-4">About</a>
             </div>
             <div className="mt-auto flex flex-col gap-4">
-              <button className="w-full py-4 text-center text-lg font-bold text-white bg-slate-900 rounded-xl shadow-xl">
+              <button className="w-full py-4 text-center text-lg font-bold text-white bg-slate-900 rounded-2xl shadow-xl">
                 CONTACT
               </button>
             </div>

@@ -34,19 +34,19 @@
     --gradient-cta: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
     --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
     
-    --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 0 2px rgba(0, 0, 0, 0.05);
+    --shadow-premium: 0 20px 40px -20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.02);
   }
 
   body {
     background-color: #FAFAFA !important;
     @apply text-slate-600 font-sans antialiased selection:bg-blue-100 selection:text-blue-900;
-    background-image:
-      linear-gradient(var(--blueprint-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px),
-      linear-gradient(var(--blueprint-line-bold) 1px, transparent 1px),
-      linear-gradient(90deg, var(--blueprint-line-bold) 1px, transparent 1px);
-    background-size: 60px 60px, 60px 60px, 300px 300px, 300px 300px;
-    background-attachment: fixed;
+  }
+
+  /* Extreme editorial noise/grain overlay */
+  body::before {
+    content: "";
+    @apply fixed inset-0 z-[999] pointer-events-none opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -55,14 +55,20 @@
 }
 
 @layer components {
-  .premium-card {
-    @apply bg-white/60 border border-white/40 relative overflow-hidden rounded-3xl backdrop-blur-xl [box-shadow:var(--shadow-premium)];
-    background-image: var(--gradient-card);
+  /* Elite Glassmorphism with inner glow */
+  .premium-glass {
+    @apply bg-white/60 backdrop-blur-3xl relative overflow-hidden [box-shadow:var(--shadow-premium)];
   }
 
-  .premium-card::before {
+  .premium-glass::before {
     content: "";
-    @apply absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent;
+    @apply absolute inset-0 rounded-[inherit] border border-white/80 pointer-events-none;
+    mask-image: linear-gradient(to bottom, black, transparent);
+  }
+
+  .premium-glass::after {
+    content: "";
+    @apply absolute inset-0 rounded-[inherit] border border-black/5 pointer-events-none;
   }
 
   .text-gradient {
